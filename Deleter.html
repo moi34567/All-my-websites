@@ -99,6 +99,12 @@
       border-radius: 5px;
       overflow-wrap: break-word;
     }
+
+    #error {
+      margin-top: 1em;
+      color: #f55;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -119,13 +125,26 @@
     <ul id="keyItems"></ul>
   </div>
 
+  <div id="error"></div>
+
   <script>
+    // 🔒 Liste des clés protégées (modifie ici ce que tu veux bloquer)
+    const protectedKeys = ["dreams", "lauryndreams", "lies"];
+
     function showPopup() {
-      const key = document.getElementById("keyInput").value;
-      if (!key.trim()) {
-        alert("Entre une clé à supprimer.");
+      const key = document.getElementById("keyInput").value.trim();
+      document.getElementById("error").textContent = "";
+
+      if (!key) {
+        document.getElementById("error").textContent = "⚠️ Entre une clé à supprimer.";
         return;
       }
+
+      if (protectedKeys.includes(key)) {
+        document.getElementById("error").textContent = `❌ La clé "${key}" est protégée et ne peut pas être supprimée.`;
+        return;
+      }
+
       document.getElementById("confirmPopup").style.display = "flex";
     }
 
@@ -134,13 +153,21 @@
     }
 
     function deleteKey() {
-      const key = document.getElementById("keyInput").value;
+      const key = document.getElementById("keyInput").value.trim();
+
+      if (protectedKeys.includes(key)) {
+        document.getElementById("error").textContent = `❌ La clé "${key}" est protégée et ne peut pas être supprimée.`;
+        hidePopup();
+        return;
+      }
+
       if (localStorage.getItem(key) !== null) {
         localStorage.removeItem(key);
         alert("Clé supprimée !");
       } else {
         alert("Clé introuvable.");
       }
+
       hidePopup();
       document.getElementById("keyInput").value = "";
       updateKeyList();
@@ -149,13 +176,16 @@
     function updateKeyList() {
       const keyList = document.getElementById("keyItems");
       keyList.innerHTML = "";
+
       if (localStorage.length === 0) {
         keyList.innerHTML = "<li><em>Aucune clé présente.</em></li>";
         return;
       }
+
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        keyList.innerHTML += `<li>${key}</li>`;
+        const isProtected = protectedKeys.includes(key);
+        keyList.innerHTML += `<li>${key}${isProtected ? " 🔒" : ""}</li>`;
       }
     }
 
