@@ -185,7 +185,7 @@
       item.onclick = () => window.open(link.url, '_blank');
 
       const icon = document.createElement('img');
-      icon.src = `https://www.google.com/s2/favicons?domain=${new URL(link.url).hostname}`;
+      icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
       icon.alt = '';
 
       const name = document.createElement('span');
