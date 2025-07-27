@@ -71,6 +71,34 @@
     .popup-content button.confirm:hover {
       background-color: #c0392b;
     }
+
+    #keyList {
+      margin-top: 2em;
+      width: 100%;
+      max-width: 500px;
+      background: #222;
+      padding: 1em;
+      border-radius: 10px;
+    }
+
+    #keyList h3 {
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+
+    #keyList ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #keyList li {
+      background: #333;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+      overflow-wrap: break-word;
+    }
   </style>
 </head>
 <body>
@@ -84,6 +112,11 @@
       <button class="confirm" onclick="deleteKey()">Oui, supprimer</button>
       <button onclick="hidePopup()">Annuler</button>
     </div>
+  </div>
+
+  <div id="keyList">
+    <h3>Clés actuelles du localStorage :</h3>
+    <ul id="keyItems"></ul>
   </div>
 
   <script>
@@ -110,7 +143,24 @@
       }
       hidePopup();
       document.getElementById("keyInput").value = "";
+      updateKeyList();
     }
+
+    function updateKeyList() {
+      const keyList = document.getElementById("keyItems");
+      keyList.innerHTML = "";
+      if (localStorage.length === 0) {
+        keyList.innerHTML = "<li><em>Aucune clé présente.</em></li>";
+        return;
+      }
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        keyList.innerHTML += `<li>${key}</li>`;
+      }
+    }
+
+    // Charger au démarrage
+    updateKeyList();
   </script>
 </body>
 </html>
