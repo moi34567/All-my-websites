@@ -118,30 +118,41 @@
     ];
 
     function renderTodoList() {
-      const saved = JSON.parse(localStorage.getItem(TODO_KEY) || "{}");
-      const container = document.getElementById("todoList");
-      container.innerHTML = "";
+    const today = new Date().toISOString().split("T")[0]; // format "2025-07-27"
+    const saved = JSON.parse(localStorage.getItem(TODO_KEY) || "{}");
+    const savedDate = localStorage.getItem("todoChecklistDate");
 
-      tasks.forEach((task, i) => {
-        const wrapper = document.createElement("div");
-        wrapper.className = "todo-item";
+    const container = document.getElementById("todoList");
+    container.innerHTML = "";
 
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = !!saved[i];
-        checkbox.onchange = () => {
-          saved[i] = checkbox.checked;
-          localStorage.setItem(TODO_KEY, JSON.stringify(saved));
-        };
-
-        const label = document.createElement("label");
-        label.textContent = task;
-
-        wrapper.appendChild(checkbox);
-        wrapper.appendChild(label);
-        container.appendChild(wrapper);
-      });
+  // Si la date a changé → reset des coches
+    if (savedDate !== today) {
+      localStorage.setItem("todoChecklistDate", today);
+      localStorage.setItem(TODO_KEY, JSON.stringify({})); // on vide les coches
+      Object.keys(saved).forEach(k => delete saved[k]); // on vide l'objet JS
     }
+
+    tasks.forEach((task, i) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "todo-item";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = !!saved[i];
+      checkbox.onchange = () => {
+        saved[i] = checkbox.checked;
+        localStorage.setItem(TODO_KEY, JSON.stringify(saved));
+      };
+
+      const label = document.createElement("label");
+      label.textContent = task;
+
+      wrapper.appendChild(checkbox);
+      wrapper.appendChild(label);
+      container.appendChild(wrapper);
+    });
+  }
+
 
     function updateClock() {
       const now = new Date();
