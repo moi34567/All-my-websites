@@ -171,23 +171,29 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // 🚀 INITIALISATION
-    links.forEach(link => {
-      const item = document.createElement('div');
-      item.className = 'link-item';
-      item.onclick = () => window.open(link.url, '_blank');
+       // 🚀 INITIALISATION
+      links.forEach(link => {
+      const item = document.createElement('div');
+      item.className = 'link-item';
+      item.onclick = () => window.open(link.url, '_blank');
 
-      const icon = document.createElement('img');
-      icon.src = `https://www.google.com/s2/favicons?domain=${new URL(link.url).hostname}`;
-      icon.alt = '';
+      const icon = document.createElement('img');
 
-      const name = document.createElement('span');
-      name.textContent = link.name;
+      if (link.url === "https://moi34567.github.io/All-my-websites/Index.html") {
+        icon.src = "https://moi34567.github.io/All-my-websites/moon-512.png";
+      } else {
+        icon.src = `https://www.google.com/s2/favicons?domain=${new URL(link.url).hostname}`;
+      }
 
-      item.appendChild(icon);
-      item.appendChild(name);
-      document.getElementById("links").appendChild(item);
-    });
+      icon.alt = '';
+
+      const name = document.createElement('span');
+      name.textContent = link.name;
+
+      item.appendChild(icon);
+      item.appendChild(name);
+      document.getElementById("links").appendChild(item);
+    });
 
     renderTodoList();
   </script>
