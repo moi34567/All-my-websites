@@ -192,16 +192,16 @@
     const BTC_MULTIPLIER = 0.0125219; // 🔧 Modifie ici le facteur de multiplication
 
     function updateBTC() {
-      fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur")
-        .then(response => response.json())
-        .then(data => {
-          const price = data.bitcoin.eur;
-          const adjusted = (price * BTC_MULTIPLIER).toFixed(2);
-          document.getElementById("btc").textContent = `💰 BTC × ${BTC_MULTIPLIER} = ${adjusted} €`;
-        })
-        .catch(() => {
-          document.getElementById("btc").textContent = "💰 Erreur chargement BTC.";
-        });
+      fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur")
+        .then(response => response.json())
+        .then(data => {
+          const price = data.bitcoin.eur;
+          const adjusted = (price * BTC_MULTIPLIER).toFixed(2);
+          document.getElementById("btc").textContent = `💼 Portefeuille : ${adjusted} €`;
+        })
+        .catch(() => {
+          document.getElementById("btc").textContent = "💼 Erreur chargement portefeuille.";
+        });
     }
 
     updateBTC();
