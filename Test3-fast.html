@@ -211,7 +211,7 @@
     links.forEach(link => {
       const item = document.createElement('div');
       item.className = 'link-item';
-      item.onclick = () => window.open(link.url, '_blank');
+      item.onclick = () => window.open(link.url, '_self');
 
       const icon = document.createElement('img');
       if(link.url === "https://moi34567.github.io/All-my-websites/Index.html"){
