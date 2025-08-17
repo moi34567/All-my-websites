@@ -101,6 +101,11 @@
   <div class="button-container">
     <button class="open-links-btn" onclick="openLinks()">Commencer à développer</button>
   </div>
+  <div class="button-container">
+    <a href="https://music.youtube.com/playlist?list=PLY8L6JqiJpDEIZfnit8K25FY0P2n_3xWB&si=ciiG4r3KdbpyIh4a" target="_blank">
+      <button class="open-links-btn">Lancer la Playlist</button>
+    </a>
+  </div>
   <div class="link-list" id="links"></div>
 
 <script>
@@ -159,12 +164,8 @@ function openLinks() {
 
       links.forEach(link => {
         window.open(link, '_blank');
-        openPlaylist()
       });
         }
-  function openPlaylist() {
-    window.open('https://music.youtube.com/playlist?list=PLY8L6JqiJpDEIZfnit8K25FY0P2n_3xWB&si=ciiG4r3KdbpyIh4a', '_blank');
-    }
 </script>
 </body>
 </html>
