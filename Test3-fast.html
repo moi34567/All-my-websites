@@ -207,28 +207,27 @@
     setInterval(updateBTC, 60000); // Toutes les 60 secondes
 
     links.forEach(link => {
-      const item = document.createElement('div');
-      item.className = 'link-item';
-      item.onclick = () => window.open(link.url, '_self');
+  const item = document.createElement('div');
+  item.className = 'link-item';
+  item.onclick = () => window.open(link.url, '_self');
 
-      const icon = document.createElement('img');
-      if(link.url === "https://moi34567.github.io/All-my-websites/Index.html"){
-        icon.src = "https://moi34567.github.io/All-my-websites/moon-512.png";
-      } else {
-        if(link.url === "https://moi34567.github.io/All-my-websites/Outils-html.html"){
-          icon.src = "https://pngdownload.io/wp-content/uploads/2023/12/HTML5-Logo-PNG-Symbol-for-Web-Development-Transparent-jpg.webp";
-      } else {
-          icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
-        }
-      icon.alt = '';
+  const icon = document.createElement('img');
+  if(link.url === "https://moi34567.github.io/All-my-websites/Index.html"){
+    icon.src = "https://moi34567.github.io/All-my-websites/moon-512.png";
+  } else if(link.url === "https://moi34567.github.io/All-my-websites/Outils-html.html"){
+    icon.src = "https://pngdownload.io/wp-content/uploads/2023/12/HTML5-Logo-PNG-Symbol-for-Web-Development-Transparent-jpg.webp";
+  } else {
+    icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
+  }
+  icon.alt = '';
 
-      const name = document.createElement('span');
-      name.textContent = link.name;
+  const name = document.createElement('span');
+  name.textContent = link.name;
 
-      item.appendChild(icon);
-      item.appendChild(name);
-      document.getElementById("links").appendChild(item);
-    });
+  item.appendChild(icon);
+  item.appendChild(name);
+  document.getElementById("links").appendChild(item);
+});
 
     renderTodoList();
   </script>
