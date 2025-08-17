@@ -105,10 +105,8 @@
 
   <script>
     const links = [
+      { name: "Outils html", url: "https://moi34567.github.io/All-my-websites/outils-html.html" },
       { name: "Mes sites", url: "https://moi34567.github.io/All-my-websites/Index.html" },
-      { name: "GitHub", url: "https://github.com" },
-      { name: "CodePen", url: "https://codepen.io/your-work" },
-      { name: "ChatGPT", url: "https://chatgpt.com" },
       { name: "Google", url: "https://google.com" },
     ];
 
@@ -217,8 +215,11 @@
       if(link.url === "https://moi34567.github.io/All-my-websites/Index.html"){
         icon.src = "https://moi34567.github.io/All-my-websites/moon-512.png";
       } else {
-        icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
-      }
+        if(link.url === "https://moi34567.github.io/All-my-websites/Outils-html.html"){
+          icon.src = "https://pngdownload.io/wp-content/uploads/2023/12/HTML5-Logo-PNG-Symbol-for-Web-Development-Transparent-jpg.webp";
+      } else {
+          icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
+        }
       icon.alt = '';
 
       const name = document.createElement('span');
