@@ -53,37 +53,44 @@
 
   <div class="link-list" id="links"></div>
 
-  <script>
-    const links = [
-      { name: "Enki", url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://play.google.com/store/apps/details%3Fid%3Dcom.enki.insights%26hl%3Dfr%26referrer%3Dutm_source%253Dgoogle%2526utm_medium%253Dorganic%2526utm_term%253Denki%2Bapp%2Bdevelopment%26pcampaignid%3DAPPU_1_tryhaLqMIK7o7M8Pxt3HuQo&ved=2ahUKEwi6v6DO3pGPAxUuNPsDHcbuMacQ5YQBegQICxAC&usg=AOvVaw1skNmq_cqHNS6t70dXee13" },
-      { name: "GitHub", url: "https://github.com" },
-      { name: "CodePen", url: "https://codepen.io/your-work" },
-      { name: "ChatGPT", url: "https://chatgpt.com" },
-      { name: "Colors", url: "https://htmlcolorcodes.com/fr/selecteur-de-couleur/" },
-      { name: "Miro", url: "https://www.google.com/aclk?sa=L&ai=DChsSEwihxNz03pGPAxX5QEECHSAQGgAYACICCAEQABoCd3M&ae=2&aspm=1&co=1&ase=2&gclid=Cj0KCQjw-4XFBhCBARIsAAdNOkufLwYqzQcXc1ZIaAj4A7DHRsD99jiUBVIZWG1cTvJ-asULakWf8IsaAgv7EALw_wcB&sph&cce=2&category=acrcp_v1_35&sig=AOD64_0hl1simzTsOnc2QnqI4smfhpDIUg&q&nis=4&adurl&ved=2ahUKEwjoxdX03pGPAxW4LPsDHf0iEUgQ0Qx6BAgHEAE" },
+<script>
+  const links = [
+    { name: "Enki", url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://play.google.com/store/apps/details%3Fid%3Dcom.enki.insights%26hl%3Dfr%26referrer%3Dutm_source%253D[...]" },
+    { name: "GitHub", url: "https://github.com" },
+    { name: "CodePen", url: "https://codepen.io/your-work" },
+    { name: "ChatGPT", url: "https://chatgpt.com" },
+    { name: "Colors", url: "https://htmlcolorcodes.com/fr/selecteur-de-couleur/" },
+    { name: "Miro", url: "https://www.google.com/aclk?sa=L&ai=DChsSEwihxNz03pGPAxX5QEECHSAQGgAYACICCAEQABoCd3M&ae=2&aspm=1&co=1&ase=2&gclid=Cj0KCQjw-4XFBhCBARIsAAdNOkufLwYqzQcXc1ZIaAj4A7DHRsD99jiUBV[...]" }
+  ];
 
-    ];
+  // Ajoute ici les URLs de tes propres images pour Enki et Miro
+  const customIcons = {
+    "Enki": "https://moi34567.github.io/All-my-websites/enki-logo.png",
+    "Miro": "https://moi34567.github.io/All-my-websites/miro-logo.png"
+  };
 
-    links.forEach(link => {
-      const item = document.createElement('div');
-      item.className = 'link-item';
-      item.onclick = () => window.open(link.url, '_self');
+  links.forEach(link => {
+    const item = document.createElement('div');
+    item.className = 'link-item';
+    item.onclick = () => window.open(link.url, '_self');
 
-      const icon = document.createElement('img');
-      if(link.url === "https://moi34567.github.io/All-my-websites/Index.html"){
-        icon.src = "https://moi34567.github.io/All-my-websites/moon-512.png";
-      } else {
-        icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
-      }
-      icon.alt = '';
+    const icon = document.createElement('img');
+    if (customIcons[link.name]) {
+      icon.src = customIcons[link.name];
+    } else if (link.url === "https://moi34567.github.io/All-my-websites/Index.html") {
+      icon.src = "https://moi34567.github.io/All-my-websites/moon-512.png";
+    } else {
+      icon.src = `https://www.google.com/s2/favicons?sz=64&domain=${new URL(link.url).hostname}`;
+    }
+    icon.alt = '';
 
-      const name = document.createElement('span');
-      name.textContent = link.name;
+    const name = document.createElement('span');
+    name.textContent = link.name;
 
-      item.appendChild(icon);
-      item.appendChild(name);
-      document.getElementById("links").appendChild(item);
-    });
-  </script>
+    item.appendChild(icon);
+    item.appendChild(name);
+    document.getElementById("links").appendChild(item);
+  });
+      </script>
 </body>
 </html>
