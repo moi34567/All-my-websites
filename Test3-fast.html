@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Page d’accueil</title>
+  <base target="_blank">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
@@ -209,7 +210,7 @@
     links.forEach(link => {
   const item = document.createElement('div');
   item.className = 'link-item';
-  item.onclick = () => window.open(link.url, '_self');
+  item.onclick = () => window.open(link.url, '_balnk');
 
   const icon = document.createElement('img');
   if(link.url === "https://moi34567.github.io/All-my-websites/Index.html"){
