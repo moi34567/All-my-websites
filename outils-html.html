@@ -77,7 +77,9 @@
   <button class="retour-btn" id="retourBtn">
    &lt;-- Retour
   </button>
-
+  <div class="button-container">
+    <button class="open-links-btn" onclick="openLinks()">Ouvrir les Liens</button>
+  </div>
   <div class="link-list" id="links"></div>
 
 <script>
@@ -128,6 +130,21 @@
     item.appendChild(name);
     document.getElementById("links").appendChild(item);
   });
-      </script>
+function openLinks() {
+      const links = [
+        'https://www.example1.com',
+        'https://www.example2.com',
+        'https://www.example3.com',
+        'https://www.example4.com',
+        'https://www.example5.com',
+        'https://www.example6.com',
+        'https://www.example7.com'
+      ];
+
+      links.forEach(link => {
+        window.open(link, '_blank');
+      });
+        }
+</script>
 </body>
 </html>
